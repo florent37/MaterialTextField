@@ -2,22 +2,40 @@
 
 buildscript {
     repositories {
+        mavenCentral()
         jcenter()
+        maven {
+            url  "http://dl.bintray.com/jfrog/jfrog-jars"
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.3.0'
+        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'com.github.dcendents:android-maven-plugin:1.2'
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1"
+        classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.+'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:+'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
+ext{
+    ANDROID_BUILD_MIN_SDK_VERSION=10
+    ANDROID_BUILD_TARGET_SDK_VERSION=22
+    ANDROID_BUILD_TOOLS_VERSION='22.0.0'
+    ANDROID_BUILD_SDK_VERSION=22
+
+    SUPPORT_VERSION='22.2.1'
+
+    MAVEN_VERSION='1.0.0'
+}
+
 allprojects {
     repositories {
         jcenter()
+        maven {
+            url  "http://dl.bintray.com/florent37/maven"
+        }
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
