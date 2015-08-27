@@ -78,6 +78,15 @@ Author: Florent Champigny
        src="https://raw.githubusercontent.com/florent37/DaVinci/master/mobile/src/main/res/drawable-hdpi/linkedin.png" />
 </a>
 
+Designer: Srikant Shetty
+
+Originally designed on MaterialUp : [http://www.materialup.com/posts/new-material-text-fields-application](http://www.materialup.com/posts/new-material-text-fields-application)
+
+<a href="www.dribbble.com/srikant">
+  <img alt="Follow me on Dribble"
+       src="http://icons.iconarchive.com/icons/graphics-vibe/classic-3d-social/72/dribbble-icon.png" />
+</a>
+
 
 License
 --------
