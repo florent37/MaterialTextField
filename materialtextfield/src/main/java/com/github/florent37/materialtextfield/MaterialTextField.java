@@ -14,6 +14,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.florent37.materialtextfield.R;
+
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.animation.ValueAnimator;
@@ -114,7 +116,7 @@ public class MaterialTextField extends FrameLayout {
         ViewHelper.setScaleX(image, 0.4f);
         ViewHelper.setScaleY(image,0.4f);
 
-        editText.setAlpha(0f);
+        ViewHelper.setAlpha(editText,0f);
         editText.setBackgroundColor(Color.TRANSPARENT);
 
         labelTopMargin = FrameLayout.LayoutParams.class.cast(label.getLayoutParams()).topMargin;
