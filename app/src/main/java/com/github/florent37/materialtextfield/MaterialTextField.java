@@ -2,6 +2,7 @@ package com.github.florent37.materialtextfield;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class MaterialTextField extends FrameLayout implements View.OnClickListen
     protected View card;
     protected ImageView image;
     protected EditText editText;
+    protected ViewGroup editTextLayout;
 
     protected int labelTopMargin = -1;
     protected boolean expanded = false;
@@ -42,13 +44,27 @@ public class MaterialTextField extends FrameLayout implements View.OnClickListen
     }
 
 
+    protected EditText findEditTextChild(){
+        if(getChildCount() > 0 && getChildAt(0) instanceof EditText){
+            return (EditText) getChildAt(0);
+        }
+        return null;
+    }
 
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
 
+        editText = findEditTextChild();
+        if(editText == null)
+            return;
+
         addView(LayoutInflater.from(getContext()).inflate(R.layout.mtf_layout, this, false));
+
+        editTextLayout = (ViewGroup) findViewById(R.id.mtf_editTextLayout);
+        removeView(editText);
+        editTextLayout.addView(editText);
 
         label = (TextView) findViewById(R.id.mtf_label);
         label.setPivotX(0);
@@ -61,8 +77,8 @@ public class MaterialTextField extends FrameLayout implements View.OnClickListen
         image.setScaleX(0.4f);
         image.setScaleY(0.4f);
 
-        editText = (EditText)findViewById(R.id.mtf_editText);
         editText.setAlpha(0f);
+        editText.setBackgroundColor(Color.TRANSPARENT);
 
         this.setOnClickListener(this);
 
@@ -81,10 +97,10 @@ public class MaterialTextField extends FrameLayout implements View.OnClickListen
 
             image.animate().alpha(0).scaleX(0.4f).scaleY(0.4f).setDuration(ANIMATION_DURATION).start();
             editText.animate().alpha(1).setDuration(ANIMATION_DURATION).start();
-            editText.clearFocus();
 
             if(OPEN_KEYBOARD_ON_FOCUS)
-                ((InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(editText.getWindowToken(), InputMethodManager.SHOW_IMPLICIT);
+                ((InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+            editText.clearFocus();
 
 
             ValueAnimator expand = ValueAnimator.ofInt(card.getHeight(), getContext().getResources().getDimensionPixelOffset(R.dimen.mtf_cardHeight_initial));
