@@ -1,5 +1,7 @@
 # MaterialTextField
 
+A different beautiful Floating Edit Text
+
 [![screen](https://raw.githubusercontent.com/florent37/MaterialTextField/master/screens/2_small.png)](https://www.youtube.com/watch?v=Rax_o3URazU)
 
 [![screen](http://i.giphy.com/l41lVkA0YkaZWNT0I.gif)](https://www.youtube.com/watch?v=Rax_o3URazU)
