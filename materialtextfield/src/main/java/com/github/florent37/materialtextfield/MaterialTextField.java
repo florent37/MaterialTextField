@@ -109,6 +109,11 @@ public class MaterialTextField extends FrameLayout {
         ViewHelper.setPivotX(label, 0);
         ViewHelper.setPivotY(label, 0);
 
+        if(editText.getHint() != null) {
+            label.setText(editText.getHint());
+            editText.setHint("");
+        }
+
         card = (CardView) findViewById(R.id.mtf_card);
 
         image = (ImageView) findViewById(R.id.mtf_image);

@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#333"
+            android:hint="Email"
             android:textColorHint="#666"
             android:textSize="15sp" />
 

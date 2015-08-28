@@ -1,7 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/mtf_label"
@@ -10,7 +11,7 @@
         android:layout_marginTop="45dp"
         android:gravity="center_vertical"
         android:paddingLeft="5dp"
-        android:text="Password"
+        tools:text="Password"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 

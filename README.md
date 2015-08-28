@@ -26,6 +26,7 @@ Surround your EditText by a MaterialTextField
         <EditText
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
+             android:hint="Password"
              android:textColor="#333"
              android:textColorHint="#666"
              android:textSize="15sp" />
