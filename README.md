@@ -63,7 +63,7 @@ compile 'com.nineoldandroids:library:2.4.0'
 
 #Credits
 
-Author: Florent Champigny
+Author: Florent Champigny [www.florentchampigny.com/](www.florentchampigny.com/)
 
 <a href="https://plus.google.com/+florentchampigny">
   <img alt="Follow me on Google+"
