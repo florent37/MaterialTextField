@@ -1,5 +1,7 @@
 # MaterialTextField
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialTextField-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2400)
+
 A different beautiful Floating Edit Text
 
 [![screen](https://raw.githubusercontent.com/florent37/MaterialTextField/master/screens/2_small.png)](https://www.youtube.com/watch?v=Rax_o3URazU)
