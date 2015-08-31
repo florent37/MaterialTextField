@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="MaterialTextField">
+        <attr name="mtf_cardCollapsedHeight" format="dimension"/>
         <attr name="mtf_labelColor" format="color"/>
         <attr name="mtf_cardColor" format="color"/>
         <attr name="mtf_image" format="reference"/>

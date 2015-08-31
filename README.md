@@ -48,6 +48,7 @@ app:mtf_image="@drawable/ic_mail_grey600_24dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
+    app:mtf_cardCollapsedHeight="4dp"
     app:mtf_image="@drawable/ic_mail_grey600_24dp"
     app:mtf_animationDuration="1000"
     app:mtf_cardColor="@color/cardview_dark_background"
@@ -63,6 +64,12 @@ compile 'com.github.florent37:materialtextfield:1.0.1@aar'
 compile 'com.android.support:cardview-v7:22.2.1'
 compile 'com.nineoldandroids:library:2.4.0'
 ```
+
+#Log
+
+1.0.2
+
+- backport fix for Pre-Lollipop
 
 #Credits
 

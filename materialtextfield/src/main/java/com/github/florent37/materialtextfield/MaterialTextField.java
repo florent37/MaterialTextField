@@ -28,7 +28,7 @@ public class MaterialTextField extends FrameLayout {
 
 
     protected TextView label;
-    protected CardView card;
+    protected View card;
     protected ImageView image;
     protected EditText editText;
     protected ViewGroup editTextLayout;
@@ -41,6 +41,7 @@ public class MaterialTextField extends FrameLayout {
     protected int labelColor = -1;
     protected int cardColor = -1;
     protected int imageDrawableId = -1;
+    protected int cardCollapsedHeight = -1;
 
     protected void handleAttributes(Context context, AttributeSet attrs) {
         try {
@@ -61,6 +62,11 @@ public class MaterialTextField extends FrameLayout {
             {
                 imageDrawableId = styledAttrs.getResourceId(R.styleable.MaterialTextField_mtf_image, -1);
             }
+            {
+                cardCollapsedHeight = styledAttrs.getDimensionPixelOffset(R.styleable.MaterialTextField_mtf_cardCollapsedHeight, context.getResources().getDimensionPixelOffset(R.dimen.mtf_cardHeight_initial));
+            }
+
+            cardCollapsedHeight += context.getResources().getDimensionPixelOffset(R.dimen.mtf_cardview_additionnal);
 
             styledAttrs.recycle();
         } catch (Exception e) {
@@ -114,7 +120,9 @@ public class MaterialTextField extends FrameLayout {
             editText.setHint("");
         }
 
-        card = (CardView) findViewById(R.id.mtf_card);
+        card = findViewById(R.id.mtf_card);
+        card.getLayoutParams().height = cardCollapsedHeight;
+        card.requestLayout();
 
         image = (ImageView) findViewById(R.id.mtf_image);
         ViewHelper.setAlpha((View) image,0);
@@ -142,7 +150,8 @@ public class MaterialTextField extends FrameLayout {
             this.label.setTextColor(labelColor);
         }
         if (cardColor != -1) {
-            this.card.setCardBackgroundColor(cardColor);
+            if(card instanceof CardView)
+                CardView.class.cast(this.card).setCardBackgroundColor(cardColor);
         }
         if (imageDrawableId != -1) {
             this.image.setImageDrawable(getContext().getResources().getDrawable(imageDrawableId));
@@ -159,7 +168,7 @@ public class MaterialTextField extends FrameLayout {
     public void reduce() {
         if (expanded) {
 
-            ValueAnimator expand = ValueAnimator.ofInt(card.getHeight(), getContext().getResources().getDimensionPixelOffset(R.dimen.mtf_cardHeight_initial));
+            ValueAnimator expand = ValueAnimator.ofInt(card.getHeight(), cardCollapsedHeight);
             expand.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
