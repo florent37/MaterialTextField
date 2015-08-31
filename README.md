@@ -70,6 +70,7 @@ compile 'com.nineoldandroids:library:2.4.0'
 1.0.2
 
 - backport fix for Pre-Lollipop
+- added mtf_cardCollapsedHeight attribute
 
 #Credits
 
