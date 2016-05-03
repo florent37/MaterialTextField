@@ -63,9 +63,10 @@ public class MaterialTextField extends FrameLayout {
                 imageDrawableId = styledAttrs.getResourceId(R.styleable.MaterialTextField_mtf_image, -1);
             }
             {
+                //Compilation fails,why?
                 cardCollapsedHeight = styledAttrs.getDimensionPixelOffset(R.styleable.MaterialTextField_mtf_cardCollapsedHeight, context.getResources().getDimensionPixelOffset(R.dimen.mtf_cardHeight_initial));
             }
-
+            
             cardCollapsedHeight += context.getResources().getDimensionPixelOffset(R.dimen.mtf_cardview_additionnal);
 
             styledAttrs.recycle();
