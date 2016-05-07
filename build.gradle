@@ -19,7 +19,7 @@ ext {
     sdk = 23
     buildTools = "23.0.3"
     minSdk = 10
-    libraryVersion = "1.0.2"
+    libraryVersion = "1.0.3"
     supportVersion = "23.3.0"
 }
 

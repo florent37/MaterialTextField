@@ -31,7 +31,7 @@ dependencies {
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'MaterialTextField'
-    orgName = 'meetic-android'
+    orgName = 'florent37'
 
     publishedGroupId = 'com.github.florent37'
     libraryName = 'MaterialTextField'
