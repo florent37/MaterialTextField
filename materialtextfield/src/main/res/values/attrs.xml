@@ -3,7 +3,6 @@
     <declare-styleable name="MaterialTextField">
         <attr name="mtf_cardCollapsedHeight" format="dimension"/>
         <attr name="mtf_labelColor" format="color"/>
-        <attr name="mtf_cardColor" format="color"/>
         <attr name="mtf_image" format="reference"/>
         <attr name="mtf_animationDuration" format="integer"/>
         <attr name="mtf_openKeyboardOnFocus" format="boolean"/>

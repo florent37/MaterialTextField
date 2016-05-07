@@ -47,11 +47,10 @@ app:mtf_image="@drawable/ic_mail_grey600_24dp"
 <com.github.florent37.materialtextfield.MaterialTextField
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+    
     app:mtf_cardCollapsedHeight="4dp"
     app:mtf_image="@drawable/ic_mail_grey600_24dp"
     app:mtf_animationDuration="1000"
-    app:mtf_cardColor="@color/cardview_dark_background"
     app:mtf_labelColor="@android:color/holo_red_dark"
     app:mtf_openKeyboardOnFocus="true">
 ```
@@ -60,12 +59,15 @@ app:mtf_image="@drawable/ic_mail_grey600_24dp"
 
 In your module [![Download](https://api.bintray.com/packages/florent37/maven/MaterialTextField/images/download.svg)](https://bintray.com/florent37/maven/MaterialTextField/_latestVersion)
 ```groovy
-compile 'com.github.florent37:materialtextfield:1.0.1@aar'
-compile 'com.android.support:cardview-v7:22.2.1'
-compile 'com.nineoldandroids:library:2.4.0'
+compile 'com.github.florent37:materialtextfield:1.0.3@aar'
 ```
 
 #Log
+
+1.0.3
+
+- removed some dependencies
+- fix for 4.4
 
 1.0.2
 
