@@ -26,9 +26,6 @@ ext {
 allprojects {
     repositories {
         jcenter()
-        maven {
-            url "http://dl.bintray.com/meetic-android/maven"
-        }
     }
 }
 
