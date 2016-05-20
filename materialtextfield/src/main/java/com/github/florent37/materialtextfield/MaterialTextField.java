@@ -36,6 +36,8 @@ public class MaterialTextField extends FrameLayout {
     protected int imageDrawableId = -1;
     protected int cardCollapsedHeight = -1;
 
+    protected float reducedScale = 0.2f;
+
     public MaterialTextField(Context context) {
         super(context);
     }
@@ -73,6 +75,10 @@ public class MaterialTextField extends FrameLayout {
                 .alpha(0)
                 .scaleX(0.4f)
                 .scaleY(0.4f)
+                .setDuration(ANIMATION_DURATION);
+
+            ViewCompat.animate(editText)
+                .alpha(0f)
                 .setUpdateListener(new ViewPropertyAnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(View view) {
@@ -83,9 +89,10 @@ public class MaterialTextField extends FrameLayout {
                 })
                 .setDuration(ANIMATION_DURATION);
 
-            ViewCompat.animate(editText)
-                .alpha(0)
+            ViewCompat.animate(card)
+                .scaleY(reducedScale)
                 .setDuration(ANIMATION_DURATION);
+
 
             if (OPEN_KEYBOARD_ON_FOCUS) {
                 ((InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
@@ -98,10 +105,13 @@ public class MaterialTextField extends FrameLayout {
 
     public void expand() {
         if (!expanded) {
-            final int height = getContext().getResources().getDimensionPixelOffset(R.dimen.mtf_cardHeight_final);
 
             ViewCompat.animate(editText)
                 .alpha(1f)
+                .setDuration(ANIMATION_DURATION);
+
+            ViewCompat.animate(card)
+                .scaleY(1f)
                 .setDuration(ANIMATION_DURATION);
 
             ViewCompat.animate(label)
@@ -115,14 +125,6 @@ public class MaterialTextField extends FrameLayout {
                 .alpha(1f)
                 .scaleX(1f)
                 .scaleY(1f)
-                .setUpdateListener(new ViewPropertyAnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(View view) {
-                        float value = ViewCompat.getAlpha(view); //percentage
-                        card.getLayoutParams().height = (int) (value * height);
-                        card.requestLayout();
-                    }
-                })
                 .setDuration(ANIMATION_DURATION);
 
             editText.requestFocus();
@@ -216,8 +218,13 @@ public class MaterialTextField extends FrameLayout {
         }
 
         card = findViewById(R.id.mtf_card);
-        card.getLayoutParams().height = cardCollapsedHeight;
-        card.requestLayout();
+
+        final int expandedHeight = getContext().getResources().getDimensionPixelOffset(R.dimen.mtf_cardHeight_final);
+        final int reducedHeight = cardCollapsedHeight;
+
+        reducedScale = (float) (reducedHeight * 1.0 / expandedHeight);
+        ViewCompat.setScaleY(card, reducedScale);
+        ViewCompat.setPivotY(card, expandedHeight);
 
         image = (ImageView) findViewById(R.id.mtf_image);
         ViewCompat.setAlpha((View) image, 0);

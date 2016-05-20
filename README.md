@@ -59,7 +59,7 @@ app:mtf_image="@drawable/ic_mail_grey600_24dp"
 
 In your module [![Download](https://api.bintray.com/packages/florent37/maven/MaterialTextField/images/download.svg)](https://bintray.com/florent37/maven/MaterialTextField/_latestVersion)
 ```groovy
-compile 'com.github.florent37:materialtextfield:1.0.4'
+compile 'com.github.florent37:materialtextfield:1.0.5'
 ```
 
 #Log
@@ -86,7 +86,7 @@ Author: Florent Champigny [http://www.florentchampigny.com/](http://www.florentc
   <img alt="Follow me on Twitter"
        src="https://raw.githubusercontent.com/florent37/DaVinci/master/mobile/src/main/res/drawable-hdpi/twitter.png" />
 </a>
-<a href="https://www.linkedin.com/profile/view?id=297860624">
+<a href="https://www.linkedin.com/in/florentchampigny">
   <img alt="Follow me on LinkedIn"
        src="https://raw.githubusercontent.com/florent37/DaVinci/master/mobile/src/main/res/drawable-hdpi/linkedin.png" />
 </a>
