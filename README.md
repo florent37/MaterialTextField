@@ -64,6 +64,10 @@ compile 'com.github.florent37:materialtextfield:1.0.5'
 
 #Log
 
+1.0.6
+- support focusability
+- added `app:mtf_hasFocus="false"`
+
 1.0.3
 
 - removed some dependencies

@@ -20,7 +20,6 @@ import android.widget.TextView;
  */
 public class MaterialTextField extends FrameLayout {
 
-
     protected TextView label;
     protected View card;
     protected ImageView image;
@@ -35,6 +34,7 @@ public class MaterialTextField extends FrameLayout {
     protected int labelColor = -1;
     protected int imageDrawableId = -1;
     protected int cardCollapsedHeight = -1;
+    protected boolean hasFocus = false;
 
     protected float reducedScale = 0.2f;
 
@@ -44,7 +44,7 @@ public class MaterialTextField extends FrameLayout {
 
     public MaterialTextField(Context context, AttributeSet attrs) {
         super(context, attrs);
-        handleAttributes(context,attrs);
+        handleAttributes(context, attrs);
     }
 
     public MaterialTextField(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -93,7 +93,6 @@ public class MaterialTextField extends FrameLayout {
                 .scaleY(reducedScale)
                 .setDuration(ANIMATION_DURATION);
 
-
             if (OPEN_KEYBOARD_ON_FOCUS) {
                 ((InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
             }
@@ -127,7 +126,9 @@ public class MaterialTextField extends FrameLayout {
                 .scaleY(1f)
                 .setDuration(ANIMATION_DURATION);
 
-            editText.requestFocus();
+            if (editText != null) {
+                editText.requestFocus();
+            }
             if (OPEN_KEYBOARD_ON_FOCUS) {
                 ((InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
             }
@@ -160,6 +161,33 @@ public class MaterialTextField extends FrameLayout {
         return expanded;
     }
 
+    public void setHasFocus(boolean hasFocus) {
+        this.hasFocus = hasFocus;
+        final InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (hasFocus) {
+            expand();
+            editText.postDelayed(new Runnable() {
+                public void run() {
+                    editText.requestFocusFromTouch();
+                    inputMethodManager.showSoftInput(editText, 0);
+                }
+            }, 300);
+        } else {
+            reduce();
+        }
+    }
+
+    @Override
+    public void requestChildFocus(View child, View focused) {
+        super.requestChildFocus(child, focused);
+
+        if (focused != null) {
+            setHasFocus(true);
+        } else {
+            setHasFocus(false);
+        }
+    }
+
     protected void handleAttributes(Context context, AttributeSet attrs) {
         try {
             TypedArray styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.MaterialTextField);
@@ -178,6 +206,9 @@ public class MaterialTextField extends FrameLayout {
             }
             {
                 cardCollapsedHeight = styledAttrs.getDimensionPixelOffset(R.styleable.MaterialTextField_mtf_cardCollapsedHeight, context.getResources().getDimensionPixelOffset(R.dimen.mtf_cardHeight_initial));
+            }
+            {
+                hasFocus = styledAttrs.getBoolean(R.styleable.MaterialTextField_mtf_hasFocus, false);
             }
 
             styledAttrs.recycle();
@@ -245,6 +276,7 @@ public class MaterialTextField extends FrameLayout {
             }
         });
 
+        setHasFocus(hasFocus);
     }
 
     protected void customizeFromAttributes() {
