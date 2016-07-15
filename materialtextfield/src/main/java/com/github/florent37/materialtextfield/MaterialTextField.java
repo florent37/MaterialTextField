@@ -78,7 +78,7 @@ public class MaterialTextField extends FrameLayout {
                 .setDuration(ANIMATION_DURATION);
 
             ViewCompat.animate(editText)
-                .alpha(0f)
+                .alpha(1f)
                 .setUpdateListener(new ViewPropertyAnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(View view) {
