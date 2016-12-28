@@ -3,7 +3,9 @@ package com.github.florent37.materialtextfield;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v4.view.ViewPropertyAnimatorUpdateListener;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -15,10 +17,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by florentchampigny on 27/08/15.
- */
+
 public class MaterialTextField extends FrameLayout {
+    protected InputMethodManager inputMethodManager;
 
     protected TextView label;
     protected View card;
@@ -35,21 +36,29 @@ public class MaterialTextField extends FrameLayout {
     protected int imageDrawableId = -1;
     protected int cardCollapsedHeight = -1;
     protected boolean hasFocus = false;
+    protected int backgroundColor = -1;
 
     protected float reducedScale = 0.2f;
 
     public MaterialTextField(Context context) {
         super(context);
+        init();
     }
 
     public MaterialTextField(Context context, AttributeSet attrs) {
         super(context, attrs);
         handleAttributes(context, attrs);
+        init();
     }
 
     public MaterialTextField(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         handleAttributes(context, attrs);
+        init();
+    }
+
+    protected void init() {
+        inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
     }
 
     public void toggle() {
@@ -62,8 +71,8 @@ public class MaterialTextField extends FrameLayout {
 
     public void reduce() {
         if (expanded) {
-
             final int heightInitial = getContext().getResources().getDimensionPixelOffset(R.dimen.mtf_cardHeight_final);
+
             ViewCompat.animate(label)
                 .alpha(1)
                 .scaleX(1)
@@ -87,16 +96,34 @@ public class MaterialTextField extends FrameLayout {
                         card.requestLayout();
                     }
                 })
-                .setDuration(ANIMATION_DURATION);
+                .setDuration(ANIMATION_DURATION)
+                .setListener(new ViewPropertyAnimatorListener() {
+                    @Override
+                    public void onAnimationStart(View view) {
+                        if (expanded) {
+                            editText.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onAnimationEnd(View view) {
+                        if (!expanded) {
+                            editText.setVisibility(View.INVISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onAnimationCancel(View view) { }
+                });
 
             ViewCompat.animate(card)
                 .scaleY(reducedScale)
                 .setDuration(ANIMATION_DURATION);
 
-            if (OPEN_KEYBOARD_ON_FOCUS) {
-                ((InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+            if (editText.hasFocus()) {
+                inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+                editText.clearFocus();
             }
-            editText.clearFocus();
 
             expanded = false;
         }
@@ -104,7 +131,6 @@ public class MaterialTextField extends FrameLayout {
 
     public void expand() {
         if (!expanded) {
-
             ViewCompat.animate(editText)
                 .alpha(1f)
                 .setDuration(ANIMATION_DURATION);
@@ -129,12 +155,21 @@ public class MaterialTextField extends FrameLayout {
             if (editText != null) {
                 editText.requestFocus();
             }
+
             if (OPEN_KEYBOARD_ON_FOCUS) {
-                ((InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+                inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
             }
 
             expanded = true;
         }
+    }
+
+    public void setBackgroundColor(int color) {
+        this.backgroundColor = color;
+    }
+
+    public int getBackgroundColor() {
+        return this.backgroundColor;
     }
 
     public View getCard() {
@@ -163,7 +198,7 @@ public class MaterialTextField extends FrameLayout {
 
     public void setHasFocus(boolean hasFocus) {
         this.hasFocus = hasFocus;
-        final InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+
         if (hasFocus) {
             expand();
             editText.postDelayed(new Runnable() {
@@ -174,17 +209,6 @@ public class MaterialTextField extends FrameLayout {
             }, 300);
         } else {
             reduce();
-        }
-    }
-
-    @Override
-    public void requestChildFocus(View child, View focused) {
-        super.requestChildFocus(child, focused);
-
-        if (focused != null) {
-            setHasFocus(true);
-        } else {
-            setHasFocus(false);
         }
     }
 
@@ -209,6 +233,9 @@ public class MaterialTextField extends FrameLayout {
             }
             {
                 hasFocus = styledAttrs.getBoolean(R.styleable.MaterialTextField_mtf_hasFocus, false);
+            }
+            {
+                backgroundColor = styledAttrs.getColor(R.styleable.MaterialTextField_mtf_backgroundColor, -1);
             }
 
             styledAttrs.recycle();
@@ -250,6 +277,10 @@ public class MaterialTextField extends FrameLayout {
 
         card = findViewById(R.id.mtf_card);
 
+        if (backgroundColor != -1) {
+            card.setBackgroundColor(backgroundColor);
+        }
+
         final int expandedHeight = getContext().getResources().getDimensionPixelOffset(R.dimen.mtf_cardHeight_final);
         final int reducedHeight = cardCollapsedHeight;
 
@@ -258,7 +289,7 @@ public class MaterialTextField extends FrameLayout {
         ViewCompat.setPivotY(card, expandedHeight);
 
         image = (ImageView) findViewById(R.id.mtf_image);
-        ViewCompat.setAlpha((View) image, 0);
+        ViewCompat.setAlpha(image, 0);
         ViewCompat.setScaleX(image, 0.4f);
         ViewCompat.setScaleY(image, 0.4f);
 
@@ -283,8 +314,9 @@ public class MaterialTextField extends FrameLayout {
         if (labelColor != -1) {
             this.label.setTextColor(labelColor);
         }
+
         if (imageDrawableId != -1) {
-            this.image.setImageDrawable(getContext().getResources().getDrawable(imageDrawableId));
+            this.image.setImageDrawable(ContextCompat.getDrawable(getContext(), imageDrawableId));
         }
     }
 

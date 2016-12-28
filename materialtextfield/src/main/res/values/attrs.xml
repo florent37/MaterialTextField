@@ -7,5 +7,6 @@
         <attr name="mtf_hasFocus" format="boolean"/>
         <attr name="mtf_animationDuration" format="integer"/>
         <attr name="mtf_openKeyboardOnFocus" format="boolean"/>
+        <attr name="mtf_backgroundColor" format="color"/>
     </declare-styleable>
 </resources>

@@ -2,4 +2,5 @@
 <resources>
     <color name="blue">#2e60bb</color>
     <color name="gray">#e2e6e9</color>
+    <color name="colorAccent">#009688</color>
 </resources>
