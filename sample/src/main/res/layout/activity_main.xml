@@ -19,10 +19,9 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginTop="20dp"
-        app:mtf_cardCollapsedHeight="2dp"
+        app:mtf_cardCollapsedHeight="4dp"
         app:mtf_hasFocus="false"
         app:mtf_image="@drawable/ic_email_white_24dp"
-        app:mtf_backgroundColor="@color/colorAccent"
         app:mtf_openKeyboardOnFocus="true">
 
         <!--
