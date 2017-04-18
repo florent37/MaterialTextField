@@ -12,7 +12,7 @@ A different beautiful Floating Edit Text
   <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
 </a>
 
-#Usage
+# Usage
 
 Surround your EditText by a MaterialTextField
 
@@ -41,7 +41,7 @@ Don't forget to precise a drawable to **mtf_image**
 app:mtf_image="@drawable/ic_mail_grey600_24dp"
 ```
 
-#Available attributes
+# Available attributes
 
 ```xml
 <com.github.florent37.materialtextfield.MaterialTextField
@@ -55,14 +55,14 @@ app:mtf_image="@drawable/ic_mail_grey600_24dp"
     app:mtf_openKeyboardOnFocus="true">
 ```
 
-#Download
+# Download
 
 In your module [![Download](https://api.bintray.com/packages/florent37/maven/MaterialTextField/images/download.svg)](https://bintray.com/florent37/maven/MaterialTextField/_latestVersion)
 ```groovy
 compile 'com.github.florent37:materialtextfield:1.0.7'
 ```
 
-#Log
+# Log
 
 1.0.6
 - support focusability
@@ -78,7 +78,7 @@ compile 'com.github.florent37:materialtextfield:1.0.7'
 - backport fix for Pre-Lollipop
 - added mtf_cardCollapsedHeight attribute
 
-#Credits
+# Credits
 
 Author: Florent Champigny [http://www.florentchampigny.com/](http://www.florentchampigny.com/)
 
