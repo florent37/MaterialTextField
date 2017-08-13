@@ -20,6 +20,7 @@ Surround your EditText by a MaterialTextField
 <com.github.florent37.materialtextfield.MaterialTextField
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        app:mtf_labelColor="#666"
         app:mtf_image="@drawable/ic_mail_grey600_24dp"
         >
 
@@ -28,7 +29,6 @@ Surround your EditText by a MaterialTextField
              android:layout_height="wrap_content"
              android:hint="Password"
              android:textColor="#333"
-             android:textColorHint="#666"
              android:textSize="15sp" />
 
 </com.github.florent37.materialtextfield.MaterialTextField>
