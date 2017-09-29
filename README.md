@@ -4,6 +4,10 @@
 
 A different beautiful Floating Edit Text
 
+<a href="https://play.google.com/store/apps/details?id=com.github.florent37.florent.champigny">
+  <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
+</a>
+
 [![screen](https://raw.githubusercontent.com/florent37/MaterialTextField/master/screens/2_small.png)](https://www.youtube.com/watch?v=Rax_o3URazU)
 
 [![screen](http://i.giphy.com/l41lVkA0YkaZWNT0I.gif)](https://www.youtube.com/watch?v=Rax_o3URazU)
@@ -84,6 +88,9 @@ compile 'com.github.florent37:materialtextfield:1.0.7'
 
 Author: Florent Champigny [http://www.florentchampigny.com/](http://www.florentchampigny.com/)
 
+<a href="https://play.google.com/store/apps/details?id=com.github.florent37.florent.champigny">
+  <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
+</a>
 <a href="https://plus.google.com/+florentchampigny">
   <img alt="Follow me on Google+"
        src="https://raw.githubusercontent.com/florent37/DaVinci/master/mobile/src/main/res/drawable-hdpi/gplus.png" />
