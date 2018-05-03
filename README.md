@@ -66,7 +66,7 @@ app:mtf_image="@drawable/ic_mail_grey600_24dp"
 
 In your module [![Download](https://api.bintray.com/packages/florent37/maven/MaterialTextField/images/download.svg)](https://bintray.com/florent37/maven/MaterialTextField/_latestVersion)
 ```groovy
-compile 'com.github.florent37:materialtextfield:1.0.7'
+implementation 'com.github.florent37:materialtextfield:1.0.7'
 ```
 
 # Log
